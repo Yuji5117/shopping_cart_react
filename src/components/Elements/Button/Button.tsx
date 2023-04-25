@@ -1,11 +1,35 @@
 import { ReactNode } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const BaseButton = styled.button`
+const getSizesStyle = ({ size = "md" }) => {
+  switch (size) {
+    case "sm":
+      return css`
+        padding: 5px 10px;
+      `;
+
+    case "lg":
+      return css`
+        padding: 15px 30px;
+      `;
+
+    default:
+      return css`
+        padding: 10px 20px;
+      `;
+  }
+};
+
+type BaseButtonProps = {
+  size?: "sm" | "md" | "lg";
+};
+
+const BaseButton = styled.button<BaseButtonProps>`
   text-align: center;
   color: #fff;
-  width: 100px;
-  min-width: 100px;
+  border-radius: 5px;
+
+  ${(props) => getSizesStyle(props)}
 `;
 
 const ButtonPrimary = styled(BaseButton)`
@@ -28,11 +52,10 @@ const buttonStyleLists = {
 type PropsType = {
   styleType: "default" | "primary" | "secondary";
   children: ReactNode;
+  size?: "sm" | "md" | "lg";
 };
 
-const Button = ({ styleType, children }: PropsType) => {
+export const Button = ({ styleType, children, size }: PropsType) => {
   const Component = buttonStyleLists[styleType] || buttonStyleLists.default;
-  return <Component>{children}</Component>;
+  return <Component size={size}>{children}</Component>;
 };
-
-export default Button;

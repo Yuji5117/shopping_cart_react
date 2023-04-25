@@ -28,8 +28,9 @@ const BaseButton = styled.button<BaseButtonProps>`
   text-align: center;
   color: #fff;
   border-radius: 5px;
-
   ${(props) => getSizesStyle(props)}
+
+  cursor: pointer;
 `;
 
 const ButtonPrimary = styled(BaseButton)`

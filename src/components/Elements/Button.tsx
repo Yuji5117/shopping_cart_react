@@ -28,7 +28,6 @@ const buttonStyleLists = {
 type PropsType = {
   styleType: "default" | "primary" | "secondary";
   children: ReactNode;
-  
 };
 
 const Button = ({ styleType, children }: PropsType) => {

@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 import { ContentLayout } from "./ContentLayout";
 
 export const MainLayout = () => {
@@ -6,7 +8,9 @@ export const MainLayout = () => {
       {/* header */}
       <header>header</header>
       {/* content layout */}
-      <ContentLayout>content</ContentLayout>
+      <ContentLayout>
+        <Outlet />
+      </ContentLayout>
     </div>
   );
 };

@@ -28,5 +28,6 @@ export const Home = () => {
 
 const CategoryContainer = styled.div`
   display: flex;
+  column-gap: 10px;
   justify-content: center;
 `;

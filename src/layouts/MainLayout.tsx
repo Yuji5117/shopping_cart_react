@@ -2,12 +2,12 @@ import { Outlet } from "react-router-dom";
 
 import { ContentLayout } from "./ContentLayout";
 
+import { Header } from "@/components/Header";
+
 export const MainLayout = () => {
   return (
     <div>
-      {/* header */}
-      <header>header</header>
-      {/* content layout */}
+      <Header />
       <ContentLayout>
         <Outlet />
       </ContentLayout>

@@ -33,6 +33,34 @@ export const handlers = [
           description: "This is an amaizng desk top",
           category: "others",
         },
+        {
+          id: 5,
+          sourceUrl: "src/assets/images/macbook.jpg",
+          title: "Mac",
+          description: "This is an amaizng desk top",
+          category: "others",
+        },
+        {
+          id: 6,
+          sourceUrl: "src/assets/images/macbook.jpg",
+          title: "Mac",
+          description: "This is an amaizng desk top",
+          category: "others",
+        },
+        {
+          id: 7,
+          sourceUrl: "src/assets/images/macbook.jpg",
+          title: "Mac",
+          description: "This is an amaizng desk top",
+          category: "others",
+        },
+        {
+          id: 8,
+          sourceUrl: "src/assets/images/macbook.jpg",
+          title: "Mac",
+          description: "This is an amaizng desk top",
+          category: "others",
+        },
       ])
     );
   }),

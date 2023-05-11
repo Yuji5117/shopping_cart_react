@@ -15,31 +15,33 @@ export const ContentCard = ({
 }: ContentCardProps) => {
   return (
     <CardWrapper>
-      <MainContainer>
-        <ImageContainer>
-          <img src={sourceUrl} alt="" height="180px" width="230" />
-        </ImageContainer>
-        <TitleContainer>{title}</TitleContainer>
+      <ImageContainer>
+        <StyledImage src={sourceUrl} alt="" />
+      </ImageContainer>
+      <BodyContainer>
+        <div>{title}</div>
         <DescriptionContainer>
           <p>{description}</p>
         </DescriptionContainer>
-        <div>
+        <FooterContainer>
           <div>★ 4.0</div>
           <Button styleType="primary">Add to cart</Button>
-        </div>
-      </MainContainer>
+        </FooterContainer>
+      </BodyContainer>
     </CardWrapper>
   );
 };
 
 const CardWrapper = styled.div`
-  width: 250px;
+  width: 220px;
   height: 300px;
-  background-color: #ededec;
+  background-color: white;
+  box-shadow: 6px 6px 7px #ccc;
 `;
 
-const MainContainer = styled.div`
+const BodyContainer = styled.div`
   text-align: center;
+  padding: 10px;
 `;
 
 const ImageContainer = styled.div`
@@ -47,5 +49,19 @@ const ImageContainer = styled.div`
   width: 100%;
 `;
 
-const TitleContainer = styled.div``;
-const DescriptionContainer = styled.div``;
+const StyledImage = styled.img`
+  height: 180px;
+  width: 210px;
+  object-fit: contain;
+`;
+
+const DescriptionContainer = styled.div`
+  padding-top: 10px;
+`;
+
+const FooterContainer = styled.div`
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;

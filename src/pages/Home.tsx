@@ -12,35 +12,61 @@ export const Home = () => {
   const query = useQuery<Item[]>("items", getItems);
 
   return (
-    <div>
-      <CategoryContainer>
-        {Categories.map((category) => (
-          <div key={category}>
-            <Tag styleType="default">{category}</Tag>
-          </div>
-        ))}
-      </CategoryContainer>
-      <div>
-        {query.isLoading ? (
-          <div>Loading ...</div>
-        ) : (
-          query.data?.map((item) => (
-            <div key={item.id}>
-              <ContentCard
-                sourceUrl={item.sourceUrl}
-                title={item.title}
-                description={item.description}
-              />
+    <HomeWrapper>
+      <MainContainer>
+        <CategoryContainer>
+          {Categories.map((category) => (
+            <div key={category}>
+              {category === "All Items" ? (
+                <Tag styleType="selected">{category}</Tag>
+              ) : (
+                <Tag styleType="default">{category}</Tag>
+              )}
             </div>
-          ))
-        )}
-      </div>
-    </div>
+          ))}
+        </CategoryContainer>
+        <CardsContainer>
+          {query.isLoading ? (
+            <div>Loading ...</div>
+          ) : (
+            query.data?.map((item) => (
+              <div key={item.id}>
+                <ContentCard
+                  sourceUrl={item.sourceUrl}
+                  title={item.title}
+                  description={item.description}
+                />
+              </div>
+            ))
+          )}
+        </CardsContainer>
+      </MainContainer>
+    </HomeWrapper>
   );
 };
 
+const HomeWrapper = styled.div`
+  width: 100%;
+  background-color: #eaebef;
+`;
+
+const MainContainer = styled.div`
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+`;
+
 const CategoryContainer = styled.div`
+  padding-top: 50px;
   display: flex;
   column-gap: 10px;
   justify-content: center;
+`;
+
+const CardsContainer = styled.div`
+  margin-top: 50px;
+  display: flex;
+  gap: 30px 20px;
+  flex-wrap: wrap;
+  text-align: center;
 `;

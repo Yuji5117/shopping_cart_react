@@ -4,14 +4,9 @@ import styled from "styled-components";
 
 import { ContentCard } from "@/components/Elements/Card";
 import { Tag } from "@/components/Elements/Tag";
+import { Item } from "@/types";
 
 const Categories = ["All Items", "mens clothing", "laptop", "others"];
-
-type Item = {
-  sourceUrl: string;
-  title: string;
-  description: string;
-};
 
 export const Home = () => {
   const [items, setItems] = useState<Item[]>([]);
@@ -34,7 +29,7 @@ export const Home = () => {
       </CategoryContainer>
       <div>
         {items.map((item) => (
-          <div key={item.title}>
+          <div key={item.id}>
             <ContentCard
               sourceUrl={item.sourceUrl}
               title={item.title}

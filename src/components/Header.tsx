@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { InputField } from "./Elements/Form";
+
 export const Header = () => {
   return (
     <StyledHeader>
@@ -10,7 +12,7 @@ export const Header = () => {
         </LogoContainer>
         <HeaderRightContainer>
           <div>
-            <input type="text" />
+            <InputField />
           </div>
           <CartAncher>
             <Link to="./cart">Cart</Link>

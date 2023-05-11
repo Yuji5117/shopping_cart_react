@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 
+import { getItems } from "@/api";
 import { ContentCard } from "@/components/Elements/Card";
 import { Tag } from "@/components/Elements/Tag";
 import { Item } from "@/types";
@@ -9,15 +9,8 @@ import { Item } from "@/types";
 const Categories = ["All Items", "mens clothing", "laptop", "others"];
 
 export const Home = () => {
-  const [items, setItems] = useState<Item[]>([]);
-  useEffect(() => {
-    const getItems = async () => {
-      const res = await axios.get("/items");
+  const query = useQuery<Item[]>("items", getItems);
 
-      setItems(res.data);
-    };
-    getItems();
-  }, []);
   return (
     <div>
       <CategoryContainer>
@@ -28,15 +21,19 @@ export const Home = () => {
         ))}
       </CategoryContainer>
       <div>
-        {items.map((item) => (
-          <div key={item.id}>
-            <ContentCard
-              sourceUrl={item.sourceUrl}
-              title={item.title}
-              description={item.description}
-            />
-          </div>
-        ))}
+        {query.isLoading ? (
+          <div>Loading ...</div>
+        ) : (
+          query.data?.map((item) => (
+            <div key={item.id}>
+              <ContentCard
+                sourceUrl={item.sourceUrl}
+                title={item.title}
+                description={item.description}
+              />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

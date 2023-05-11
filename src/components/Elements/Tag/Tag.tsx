@@ -15,12 +15,12 @@ const BaseTag = styled.button`
 
 const DefaultTag = styled(BaseTag)`
   color: black;
-  background-color: transparent;
+  background-color: white;
 `;
 
 const SelectedTag = styled(BaseTag)`
   color: white;
-  background-color: #bbb;
+  background-color: #5bb166;
 `;
 
 const tagStyleLists = {

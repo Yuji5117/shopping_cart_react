@@ -33,9 +33,7 @@ type PropsType = {
   styleType: "default" | "selected";
 };
 
-const Tag = ({ styleType, children }: PropsType) => {
+export const Tag = ({ styleType, children }: PropsType) => {
   const Component = tagStyleLists[styleType] || tagStyleLists.default;
   return <Component>{children}</Component>;
 };
-
-export default Tag;

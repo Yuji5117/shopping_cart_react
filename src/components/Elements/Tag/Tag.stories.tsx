@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import Tag from "./Tag";
+import { Tag } from "./Tag";
 
 const meta = {
   component: Tag,

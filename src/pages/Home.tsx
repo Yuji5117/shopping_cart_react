@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { ContentCard } from "@/components/Elements/Card";
@@ -5,7 +7,22 @@ import { Tag } from "@/components/Elements/Tag";
 
 const Categories = ["All Items", "mens clothing", "laptop", "others"];
 
+type Item = {
+  sourceUrl: string;
+  title: string;
+  description: string;
+};
+
 export const Home = () => {
+  const [items, setItems] = useState<Item[]>([]);
+  useEffect(() => {
+    const getItems = async () => {
+      const res = await axios.get("/items");
+
+      setItems(res.data);
+    };
+    getItems();
+  }, []);
   return (
     <div>
       <CategoryContainer>
@@ -16,11 +33,15 @@ export const Home = () => {
         ))}
       </CategoryContainer>
       <div>
-        <ContentCard
-          sourceUrl="src/assets/images/macbook.jpg"
-          title="MacBook Pro"
-          description="Pc......"
-        />
+        {items.map((item) => (
+          <div key={item.title}>
+            <ContentCard
+              sourceUrl={item.sourceUrl}
+              title={item.title}
+              description={item.description}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

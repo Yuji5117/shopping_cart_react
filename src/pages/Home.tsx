@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { ContentCard } from "@/components/Elements/Card";
 import { Tag } from "@/components/Elements/Tag";
+import { ItemList } from "@/components/ItemList";
 import { useFilterByCategory } from "@/hooks";
 import { CategoryType } from "@/types";
 
@@ -34,21 +34,7 @@ export const Home = () => {
           ))}
         </CategoryContainer>
         <CardsContainer>
-          {query.isLoading ? (
-            <div>Loading ...</div>
-          ) : (
-            query.data?.map((item) => {
-              return (
-                <div key={item.id}>
-                  <ContentCard
-                    sourceUrl={item.sourceUrl}
-                    title={item.title}
-                    description={item.description}
-                  />
-                </div>
-              );
-            })
-          )}
+          <ItemList query={query} />
         </CardsContainer>
       </MainContainer>
     </HomeWrapper>

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
 
 const BaseTag = styled.button`
@@ -28,12 +28,12 @@ const tagStyleLists = {
   selected: SelectedTag,
 };
 
-type PropsType = {
+type PropsType = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   styleType: "default" | "selected";
 };
 
-export const Tag = ({ styleType, children }: PropsType) => {
+export const Tag = ({ styleType, children, onClick }: PropsType) => {
   const Component = tagStyleLists[styleType] || tagStyleLists.default;
-  return <Component>{children}</Component>;
+  return <Component onClick={onClick}>{children}</Component>;
 };

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import styled, { css } from "styled-components";
 
 const getSizesStyle = ({ size = "md" }) => {
@@ -50,13 +50,17 @@ const buttonStyleLists = {
   secondary: ButtonSecondary,
 };
 
-type PropsType = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   styleType: "default" | "primary" | "secondary";
   children: ReactNode;
   size?: "sm" | "md" | "lg";
 };
 
-export const Button = ({ styleType, children, size }: PropsType) => {
+export const Button = ({ styleType, children, size, onClick }: ButtonProps) => {
   const Component = buttonStyleLists[styleType] || buttonStyleLists.default;
-  return <Component size={size}>{children}</Component>;
+  return (
+    <Component size={size} onClick={onClick}>
+      {children}
+    </Component>
+  );
 };

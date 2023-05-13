@@ -1,6 +1,12 @@
 import axios from "axios";
 
-export const getItems = async () => {
-  const res = await axios.get("/items");
+import { CategoryType } from "@/types";
+
+export const getItems = async (category: CategoryType = "All Items") => {
+  const res = await axios.get("/items", {
+    params: {
+      category,
+    },
+  });
   return res.data;
 };

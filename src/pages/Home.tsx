@@ -1,15 +1,20 @@
-import { useQuery } from "react-query";
 import styled from "styled-components";
 
-import { getItems } from "@/api";
 import { ContentCard } from "@/components/Elements/Card";
 import { Tag } from "@/components/Elements/Tag";
-import { Item } from "@/types";
+import { useFilterByCategory } from "@/hooks";
+import { CategoryType } from "@/types";
 
-const Categories = ["All Items", "mens clothing", "laptop", "others"];
+const Categories: CategoryType[] = [
+  "All Items",
+  "mens clothing",
+  "laptop",
+  "others",
+];
 
 export const Home = () => {
-  const query = useQuery<Item[]>("items", getItems);
+  const { selectedCategory, query, changeSelectedCategory } =
+    useFilterByCategory();
 
   return (
     <HomeWrapper>
@@ -17,11 +22,14 @@ export const Home = () => {
         <CategoryContainer>
           {Categories.map((category) => (
             <div key={category}>
-              {category === "All Items" ? (
-                <Tag styleType="selected">{category}</Tag>
-              ) : (
-                <Tag styleType="default">{category}</Tag>
-              )}
+              <Tag
+                styleType={
+                  category === selectedCategory ? "selected" : "default"
+                }
+                onClick={() => changeSelectedCategory(category)}
+              >
+                {category}
+              </Tag>
             </div>
           ))}
         </CategoryContainer>
@@ -29,15 +37,17 @@ export const Home = () => {
           {query.isLoading ? (
             <div>Loading ...</div>
           ) : (
-            query.data?.map((item) => (
-              <div key={item.id}>
-                <ContentCard
-                  sourceUrl={item.sourceUrl}
-                  title={item.title}
-                  description={item.description}
-                />
-              </div>
-            ))
+            query.data?.map((item) => {
+              return (
+                <div key={item.id}>
+                  <ContentCard
+                    sourceUrl={item.sourceUrl}
+                    title={item.title}
+                    description={item.description}
+                  />
+                </div>
+              );
+            })
           )}
         </CardsContainer>
       </MainContainer>
@@ -54,10 +64,11 @@ const MainContainer = styled.div`
   max-width: 1200px;
   margin-right: auto;
   margin-left: auto;
+  padding-top: 50px;
+  padding-bottom: 70px;
 `;
 
 const CategoryContainer = styled.div`
-  padding-top: 50px;
   display: flex;
   column-gap: 10px;
   justify-content: center;

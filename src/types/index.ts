@@ -5,3 +5,5 @@ export type Item = {
   description: string;
   category: string;
 };
+
+export type CategoryType = "All Items" | "mens clothing" | "laptop" | "others";

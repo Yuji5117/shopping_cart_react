@@ -57,7 +57,6 @@ export const Home = () => {
 
 const HomeWrapper = styled.div`
   width: 100%;
-  background-color: #eaebef;
 `;
 
 const MainContainer = styled.div`

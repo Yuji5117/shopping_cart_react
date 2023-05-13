@@ -25,6 +25,7 @@ export const Header = () => {
 
 const StyledHeader = styled.header`
   height: 64px;
+  background-color: #fff;
 `;
 
 const HeaderWrpper = styled.div`

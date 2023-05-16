@@ -39,7 +39,7 @@ const ButtonPrimary = styled(BaseButton)`
 `;
 
 const ButtonSecondary = styled(BaseButton)`
-  background: transparent;
+  background: #fff;
   color: black;
   border: 1px solid#5bb166;
 `;
@@ -51,12 +51,17 @@ const buttonStyleLists = {
 };
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  styleType: "default" | "primary" | "secondary";
+  styleType: keyof typeof buttonStyleLists;
   children: ReactNode;
   size?: "sm" | "md" | "lg";
 };
 
-export const Button = ({ styleType, children, size, onClick }: ButtonProps) => {
+export const Button = ({
+  styleType = "default",
+  children,
+  size,
+  onClick,
+}: ButtonProps) => {
   const Component = buttonStyleLists[styleType] || buttonStyleLists.default;
   return (
     <Component size={size} onClick={onClick}>

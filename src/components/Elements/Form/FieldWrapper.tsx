@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 type FieldWrapperProps = {
   children: ReactNode;
-  label: string;
+  label?: string;
 };
 
 export const FieldWrapper = ({ label, children }: FieldWrapperProps) => {

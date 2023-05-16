@@ -1,32 +1,27 @@
-import { UseQueryResult } from "react-query";
-
 import { ContentCard } from "@/components/Elements/Card";
 import { Item } from "@/types";
 
 type ItemListProps = {
-  query: UseQueryResult<Item[], unknown>;
+  items: Item[] | undefined;
+  isLoading: boolean;
 };
 
-export const ItemList = ({ query }: ItemListProps) => {
-  if (query.isLoading) return <div>Loading ...</div>;
+export const ItemList = ({ items, isLoading }: ItemListProps) => {
+  if (isLoading) return <div>Loading ...</div>;
+
+  if (!items?.length) return <div>該当の商品がありません</div>;
 
   return (
     <>
-      {!query.data?.length ? (
-        <div>該当の商品がありません</div>
-      ) : (
-        query.data?.map((item) => {
-          return (
-            <div key={item.id}>
-              <ContentCard
-                sourceUrl={item.sourceUrl}
-                title={item.title}
-                description={item.description}
-              />
-            </div>
-          );
-        })
-      )}
+      {items?.map((item) => (
+        <div key={item.id}>
+          <ContentCard
+            sourceUrl={item.sourceUrl}
+            title={item.title}
+            description={item.description}
+          />
+        </div>
+      ))}
     </>
   );
 };

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
+import { InputField } from "@/components/Elements/Form";
 import { Tag } from "@/components/Elements/Tag";
 import { ItemList } from "@/components/ItemList";
-import { useFilterByCategory } from "@/hooks";
+import { useFilterByCategory, useSearchTitleByKeyword } from "@/hooks";
 import { CategoryType } from "@/types";
 
 const Categories: CategoryType[] = [
@@ -13,12 +14,15 @@ const Categories: CategoryType[] = [
 ];
 
 export const Home = () => {
-  const { selectedCategory, query, changeSelectedCategory } =
+  const { selectedCategory, data, isLoading, changeSelectedCategory } =
     useFilterByCategory();
+  const { keyword, onChangeKeyword, filteredItems } =
+    useSearchTitleByKeyword(data);
 
   return (
     <HomeWrapper>
       <MainContainer>
+        <InputField type="text" onChange={(e) => onChangeKeyword(e)} />
         <CategoryContainer>
           {Categories.map((category) => (
             <div key={category}>
@@ -34,7 +38,10 @@ export const Home = () => {
           ))}
         </CategoryContainer>
         <CardsContainer>
-          <ItemList query={query} />
+          <ItemList
+            items={keyword === "" ? data : filteredItems}
+            isLoading={isLoading}
+          />
         </CardsContainer>
       </MainContainer>
     </HomeWrapper>

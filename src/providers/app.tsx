@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Reset } from "styled-reset";
 
 import GlobalStyles from "@/libs/styled/global";
@@ -12,6 +13,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <Reset />
       <GlobalStyles />
       {children}

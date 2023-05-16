@@ -5,7 +5,6 @@ import { CategoryList } from "@/components/CategoryList";
 import { InputField } from "@/components/Elements/Form";
 import { ItemList } from "@/components/ItemList";
 import { useFilterByCategory, useSearchTitleByKeyword } from "@/hooks";
-import { cartContext } from "@/stores/CartContext";
 
 export const Home = () => {
   const { selectedCategory, data, isLoading, changeSelectedCategory } =

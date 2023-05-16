@@ -1,17 +1,9 @@
 import styled from "styled-components";
 
+import { CategoryList } from "@/components/CategoryList";
 import { InputField } from "@/components/Elements/Form";
-import { Tag } from "@/components/Elements/Tag";
 import { ItemList } from "@/components/ItemList";
 import { useFilterByCategory, useSearchTitleByKeyword } from "@/hooks";
-import { CategoryType } from "@/types";
-
-const Categories: CategoryType[] = [
-  "All Items",
-  "mens clothing",
-  "laptop",
-  "others",
-];
 
 export const Home = () => {
   const { selectedCategory, data, isLoading, changeSelectedCategory } =
@@ -24,18 +16,10 @@ export const Home = () => {
       <MainContainer>
         <InputField type="text" onChange={(e) => onChangeKeyword(e)} />
         <CategoryContainer>
-          {Categories.map((category) => (
-            <div key={category}>
-              <Tag
-                styleType={
-                  category === selectedCategory ? "selected" : "default"
-                }
-                onClick={() => changeSelectedCategory(category)}
-              >
-                {category}
-              </Tag>
-            </div>
-          ))}
+          <CategoryList
+            selectedCategory={selectedCategory}
+            changeSelectedCategory={changeSelectedCategory}
+          />
         </CategoryContainer>
         <CardsContainer>
           <ItemList

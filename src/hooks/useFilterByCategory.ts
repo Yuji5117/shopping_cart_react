@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useQuery } from "react-query";
 
 import { getItems } from "@/api";
@@ -9,12 +9,17 @@ export const useFilterByCategory = () => {
     useState<CategoryType>("All Items");
   const { data, isLoading } = useQuery<Item[]>(
     ["items", selectedCategory],
-    () => getItems(selectedCategory)
+    () => getItems(selectedCategory),
+    {
+      onError(error) {
+        console.error("Error occur", error);
+      },
+    }
   );
 
-  const changeSelectedCategory = (category: CategoryType) => {
+  const changeSelectedCategory = useCallback((category: CategoryType) => {
     setSelectedCategory(category);
-  };
+  }, []);
 
   return { selectedCategory, data, isLoading, changeSelectedCategory };
 };

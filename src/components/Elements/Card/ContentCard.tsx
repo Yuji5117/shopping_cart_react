@@ -6,12 +6,14 @@ type ContentCardProps = {
   sourceUrl: string;
   title: string;
   description: string;
+  onClick?: () => void;
 };
 
 export const ContentCard = ({
   sourceUrl,
   title,
   description,
+  onClick,
 }: ContentCardProps) => {
   return (
     <CardWrapper>
@@ -25,7 +27,9 @@ export const ContentCard = ({
         </DescriptionContainer>
         <FooterContainer>
           <div>★ 4.0</div>
-          <Button styleType="primary">Add to cart</Button>
+          <Button styleType="primary" onClick={onClick}>
+            Add to cart
+          </Button>
         </FooterContainer>
       </BodyContainer>
     </CardWrapper>

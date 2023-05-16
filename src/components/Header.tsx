@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { useCartContext } from "@/stores/CartContext";
+
 export const Header = () => {
+  const { cartItemsCount } = useCartContext();
   return (
     <StyledHeader>
       <HeaderWrpper>
@@ -11,6 +14,7 @@ export const Header = () => {
         <HeaderRightContainer>
           <CartAncher>
             <Link to="./cart">Cart</Link>
+            <p>{cartItemsCount}</p>
           </CartAncher>
         </HeaderRightContainer>
       </HeaderWrpper>

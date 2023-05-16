@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import styled from "styled-components";
 
 import { CategoryList } from "@/components/CategoryList";
@@ -12,6 +11,8 @@ export const Home = () => {
   const { keyword, onChangeKeyword, filteredItems } =
     useSearchTitleByKeyword(data);
 
+  const itemsToRender = keyword === "" ? data : filteredItems;
+
   return (
     <HomeWrapper>
       <MainContainer>
@@ -23,10 +24,7 @@ export const Home = () => {
           />
         </CategoryContainer>
         <CardsContainer>
-          <ItemList
-            items={keyword === "" ? data : filteredItems}
-            isLoading={isLoading}
-          />
+          <ItemList items={itemsToRender} isLoading={isLoading} />
         </CardsContainer>
       </MainContainer>
     </HomeWrapper>
@@ -37,6 +35,10 @@ const HomeWrapper = styled.div`
   width: 100%;
 `;
 
+const FlexContainer = styled.div`
+  display: flex;
+`;
+
 const MainContainer = styled.div`
   max-width: 1200px;
   margin-right: auto;
@@ -45,15 +47,13 @@ const MainContainer = styled.div`
   padding-bottom: 70px;
 `;
 
-const CategoryContainer = styled.div`
-  display: flex;
+const CategoryContainer = styled(FlexContainer)`
   column-gap: 10px;
   justify-content: center;
 `;
 
-const CardsContainer = styled.div`
+const CardsContainer = styled(FlexContainer)`
   margin-top: 50px;
-  display: flex;
   gap: 30px 20px;
   flex-wrap: wrap;
   text-align: center;

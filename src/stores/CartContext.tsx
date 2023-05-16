@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 
 import { Item } from "@/types";
 
@@ -27,15 +33,15 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   const cartItemsCount = cartItems.length;
 
-  const addToCart = (item: Item) => {
+  const addToCart = useCallback((item: Item) => {
     setCartItems((prevItems) => [...prevItems, item]);
-  };
+  }, []);
 
-  const removeFromCart = (itemId: number) => {
+  const removeFromCart = useCallback((itemId: number) => {
     const newCartItems = cartItems.filter((item) => itemId !== item.id);
 
-    setCartItems([...newCartItems]);
-  };
+    setCartItems(newCartItems);
+  }, []);
 
   return (
     <cartContext.Provider

@@ -4,6 +4,8 @@ import { useCartContext } from "@/stores/CartContext";
 export const Cart = () => {
   const { cartItems, removeFromCart } = useCartContext();
 
+  if (!cartItems.length) return <div>カートに商品がありません。</div>;
+
   return (
     <div>
       <ul>

@@ -1,22 +1,32 @@
 import styled from "styled-components";
 
 import { Button } from "./Elements/Button";
+import { SelectField } from "./Elements/Form/SelectField";
 
 import { Item } from "@/types";
 
-type CartItemProps = Pick<
-  Item,
-  "title" | "sourceUrl" | "amount" | "totalCount"
-> & {
+type CartItemProps = Omit<Item, "description" | "category"> & {
   onClick: () => void;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>, itemId: number) => void;
 };
 
+const options = [
+  { label: "1", value: 1 },
+  { label: "2", value: 2 },
+  { label: "3", value: 3 },
+  { label: "4", value: 4 },
+  { label: "5", value: 5 },
+  { label: "6", value: 6 },
+];
+
 export const CartItem = ({
+  id,
   title,
   sourceUrl,
   amount,
   totalCount,
   onClick,
+  onChange,
 }: CartItemProps) => {
   return (
     <CardItemContainer>
@@ -31,7 +41,16 @@ export const CartItem = ({
           <Price>
             <p>{amount}円</p>
           </Price>
-          <Count>{totalCount}</Count>
+          <Count>
+            <SelectField
+              label="商品選択数"
+              options={options}
+              defaultValue={totalCount}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                onChange(e, id)
+              }
+            />
+          </Count>
         </CardContent>
         <ButtonContainer>
           <Button styleType="primary" onClick={onClick}>

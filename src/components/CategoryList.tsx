@@ -1,7 +1,7 @@
 import { Tag } from "./Elements/Tag";
 
 import { CategoryType } from "@/types";
-import { Categories } from "@/utils";
+import { CATEGORIES } from "@/utils";
 
 type CategoryListProps = {
   selectedCategory: CategoryType;
@@ -14,7 +14,7 @@ export const CategoryList = ({
 }: CategoryListProps) => {
   return (
     <>
-      {Categories.map((category) => (
+      {CATEGORIES.map((category) => (
         <div key={category}>
           <Tag
             styleType={category === selectedCategory ? "selected" : "default"}

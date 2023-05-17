@@ -8,6 +8,7 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng laptop",
     category: "laptop",
+    totalCount: 0,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng laptop",
     category: "laptop",
+    totalCount: 0,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng laptop",
     category: "laptop",
+    totalCount: 0,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng desk top",
     category: "others",
+    totalCount: 0,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng desk top",
     category: "others",
+    totalCount: 0,
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng desk top",
     category: "others",
+    totalCount: 0,
   },
   {
     id: 7,
@@ -56,6 +62,7 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng desk top",
     category: "others",
+    totalCount: 0,
   },
   {
     id: 8,
@@ -64,5 +71,6 @@ export const items: Item[] = [
     amount: 100,
     description: "This is an amaizng desk top",
     category: "others",
+    totalCount: 0,
   },
 ];

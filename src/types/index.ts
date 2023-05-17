@@ -5,6 +5,7 @@ export type Item = {
   amount: number;
   description: string;
   category: string;
+  totalCount: number;
 };
 
 export type CategoryType = "All Items" | "mens clothing" | "laptop" | "others";

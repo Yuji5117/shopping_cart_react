@@ -13,7 +13,7 @@ export const Cart = () => {
               title={item.title}
               sourceUrl={item.sourceUrl}
               amount={item.amount}
-              count={1}
+              totalCount={item.totalCount}
               onClick={() => removeFromCart(item.id)}
             />
           </li>

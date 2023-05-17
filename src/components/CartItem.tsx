@@ -4,8 +4,10 @@ import { Button } from "./Elements/Button";
 
 import { Item } from "@/types";
 
-type CartItemProps = Pick<Item, "title" | "sourceUrl" | "amount"> & {
-  count: number;
+type CartItemProps = Pick<
+  Item,
+  "title" | "sourceUrl" | "amount" | "totalCount"
+> & {
   onClick: () => void;
 };
 
@@ -13,7 +15,7 @@ export const CartItem = ({
   title,
   sourceUrl,
   amount,
-  count,
+  totalCount,
   onClick,
 }: CartItemProps) => {
   return (
@@ -29,7 +31,7 @@ export const CartItem = ({
           <Price>
             <p>{amount}円</p>
           </Price>
-          <Count>{count}</Count>
+          <Count>{totalCount}</Count>
         </CardContent>
         <ButtonContainer>
           <Button styleType="primary" onClick={onClick}>

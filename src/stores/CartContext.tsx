@@ -31,17 +31,30 @@ type CartProviderProps = {
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useState<Item[]>([]);
 
-  const cartItemsCount = cartItems.length;
+  const cartItemsCount = cartItems.reduce((prev, current) => {
+    return prev + current.totalCount;
+  }, 0);
 
-  const addToCart = useCallback((item: Item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
-  }, []);
+  const addToCart = (item: Item) => {
+    const hasItem = cartItems.some((cartItem) => item.id === cartItem.id);
 
-  const removeFromCart = useCallback((itemId: number) => {
+    if (hasItem) {
+      const newCartItems = cartItems.map((cartItem) => {
+        if (item.id !== cartItem.id) return cartItem;
+        return { ...cartItem, totalCount: cartItem.totalCount + 1 };
+      });
+      setCartItems(newCartItems);
+    } else {
+      const newItem = { ...item, totalCount: 1 };
+      setCartItems((prevCartItems) => [...prevCartItems, newItem]);
+    }
+  };
+
+  const removeFromCart = (itemId: number) => {
     const newCartItems = cartItems.filter((item) => itemId !== item.id);
 
     setCartItems(newCartItems);
-  }, []);
+  };
 
   return (
     <cartContext.Provider

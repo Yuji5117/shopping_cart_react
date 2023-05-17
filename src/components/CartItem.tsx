@@ -39,7 +39,7 @@ export const CartItem = ({
             <h3>{title}</h3>
           </Title>
           <Price>
-            <p>{amount}円</p>
+            <p>{amount * totalCount}円</p>
           </Price>
           <Count>
             <SelectField

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FieldWrapper } from "./FieldWrapper";
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
-  type: "text";
+  type: "text" | "search";
   registration?: UseFormRegisterReturn;
   label?: string;
 };

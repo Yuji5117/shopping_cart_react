@@ -16,7 +16,7 @@ export const Home = () => {
   return (
     <HomeWrapper>
       <MainContainer>
-        <InputField type="text" onChange={(e) => onChangeKeyword(e)} />
+        <InputField type="search" onChange={(e) => onChangeKeyword(e)} />
         <CategoryContainer>
           <CategoryList
             selectedCategory={selectedCategory}

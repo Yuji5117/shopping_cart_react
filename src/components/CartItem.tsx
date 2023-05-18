@@ -63,9 +63,6 @@ const CardItemContainer = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const ImageContainer = styled.div`

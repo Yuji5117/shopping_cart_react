@@ -6,3 +6,5 @@ export const CATEGORIES: CategoryType[] = [
   "laptop",
   "others",
 ];
+
+export const TAX_RATE = 1.1;

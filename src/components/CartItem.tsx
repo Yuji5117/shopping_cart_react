@@ -3,12 +3,10 @@ import styled from "styled-components";
 import { Button } from "./Elements/Button";
 import { SelectField } from "./Elements/Form/SelectField";
 
+import { useCartContext } from "@/stores/CartContext";
 import { Item } from "@/types";
 
-type CartItemProps = Omit<Item, "description" | "category"> & {
-  onClick: () => void;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>, itemId: number) => void;
-};
+type CartItemProps = Omit<Item, "description" | "category">;
 
 const options = [
   { label: "1", value: 1 },
@@ -25,9 +23,8 @@ export const CartItem = ({
   sourceUrl,
   amount,
   totalCount,
-  onClick,
-  onChange,
 }: CartItemProps) => {
+  const { removeFromCart, changeItemCount } = useCartContext();
   return (
     <CardItemContainer>
       <ImageContainer>
@@ -47,13 +44,13 @@ export const CartItem = ({
               options={options}
               defaultValue={totalCount}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                onChange(e, id)
+                changeItemCount(e, id)
               }
             />
           </Count>
         </CardContent>
         <ButtonContainer>
-          <Button styleType="primary" onClick={onClick}>
+          <Button styleType="primary" onClick={() => removeFromCart(id)}>
             削除
           </Button>
         </ButtonContainer>

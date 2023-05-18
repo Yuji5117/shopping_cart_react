@@ -1,8 +1,9 @@
 import { CartItem } from "@/components/CartItem";
+import { TotalPrice } from "@/components/TotalPrice";
 import { useCartContext } from "@/stores/CartContext";
 
 export const Cart = () => {
-  const { cartItems, removeFromCart, changeItemCount } = useCartContext();
+  const { cartItems } = useCartContext();
 
   if (!cartItems.length) return <div>カートに商品がありません。</div>;
 
@@ -17,12 +18,11 @@ export const Cart = () => {
               sourceUrl={item.sourceUrl}
               amount={item.amount}
               totalCount={item.totalCount}
-              onClick={() => removeFromCart(item.id)}
-              onChange={changeItemCount}
             />
           </li>
         ))}
       </ul>
+      <TotalPrice />
     </div>
   );
 };

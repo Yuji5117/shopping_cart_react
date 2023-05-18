@@ -1,10 +1,13 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
 import { Item } from "@/types";
+import { TAX_RATE } from "@/utils";
 
 type CartContextType = {
   cartItems: Item[];
   cartItemsCount: number;
+  subTotalAmount: number;
+  totalAmount: number;
   addToCart: (item: Item) => void;
   removeFromCart: (itemId: number) => void;
   changeItemCount: (
@@ -16,6 +19,8 @@ type CartContextType = {
 export const cartContext = createContext<CartContextType>({
   cartItems: [],
   cartItemsCount: 0,
+  subTotalAmount: 0,
+  totalAmount: 0,
   addToCart: () => undefined,
   removeFromCart: () => undefined,
   changeItemCount: () => undefined,
@@ -33,6 +38,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const cartItemsCount = cartItems.reduce((prev, current) => {
     return prev + current.totalCount;
   }, 0);
+
+  const subTotalAmount = cartItems.reduce(
+    (prev, current) => prev + current.amount * current.totalCount,
+    0
+  );
+
+  const totalAmount = Math.floor(subTotalAmount * TAX_RATE);
 
   const addToCart = (item: Item) => {
     const hasItem = cartItems.some((cartItem) => item.id === cartItem.id);
@@ -73,6 +85,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       value={{
         cartItems,
         cartItemsCount,
+        subTotalAmount,
+        totalAmount,
         addToCart,
         removeFromCart,
         changeItemCount,
